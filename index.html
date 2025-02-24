@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="Sprites/George.png">
+
+    <!-- Open Graph Meta Tags for Rich Embeds -->
+    <meta property="og:title" content="Catch the Floyd - A Fun Game" />
+    <meta property="og:description" content="Test your reflexes and catch Floyd as he jumps around! Play now!" />
+    <meta property="og:image" content="https://sajjadmeydani.ir/Sprites/George.png" /> <!-- Replace with your actual image URL -->
+    <meta property="og:url" content="https://sajjadmeydani.ir" /> <!-- Replace with your actual website URL -->
+    <meta property="og:type" content="game" />
+
+    <!-- Title -->
     <title>Catch the Floyd</title>
+
+    <!-- Styles -->
     <style>
         body {
             margin: 0;
             overflow: hidden;
             font-family: Arial, sans-serif;
         }
-
         canvas {
             display: block;
             background-color: #87CEEB; /* Sky blue background */
@@ -20,7 +31,6 @@
             left: 0;
             z-index: 1;
         }
-
         .game-over-screen {
             display: none;
             position: absolute;
@@ -34,7 +44,6 @@
             padding: 20px;
             border-radius: 10px;
         }
-
         .restart-button {
             display: inline-block;
             margin-top: 20px;
@@ -46,21 +55,18 @@
             cursor: pointer;
             font-size: 16px;
         }
-
         .restart-button:hover {
             background-color: darkblue;
         }
     </style>
 </head>
 <body>
-<canvas id="gameCanvas"></canvas>
-
-<!-- Game Over Screen -->
-<div id="gameOverScreen" class="game-over-screen">
-    <h1>Game Over!</h1>
-    <button id="restartButton" class="restart-button">Restart</button>
-</div>
-
-<script src="./Scripts/main.js"></script>
+    <canvas id="gameCanvas"></canvas>
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="game-over-screen">
+        <h1>Game Over!</h1>
+        <button id="restartButton" class="restart-button">Restart</button>
+    </div>
+    <script src="./Scripts/main.js"></script>
 </body>
 </html>
