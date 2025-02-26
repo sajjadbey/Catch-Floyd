@@ -120,16 +120,36 @@ function createFood() {
     foods.push({ x, y, color });
 }
 
-// Function to update food positions
+const hitboxOffsetX = 10; // Shrink hitbox width (adjust based on your image)
+const hitboxOffsetY = 10; // Shrink hitbox height (adjust based on your image)
+const hitboxWidth = foodSize - hitboxOffsetX * 2; 
+const hitboxHeight = foodSize - hitboxOffsetY * 2;
+
 function updateFoods(deltaTime) {
     for (let i = foods.length - 1; i >= 0; i--) {
         foods[i].y += 300 * (deltaTime / 1000); // Velocity-based falling
 
-        // Check if food is caught by the basket
+        // Define food hitbox inside the PNG
+        const foodHitbox = {
+            x: foods[i].x + hitboxOffsetX,
+            y: foods[i].y + hitboxOffsetY,
+            width: hitboxWidth,
+            height: hitboxHeight
+        };
+
+        // Define basket hitbox (adjust as needed)
+        const basketHitbox = {
+            x: basket.x + 10, // Adjust to match visible part
+            y: basket.y + 10, // Adjust to match visible part
+            width: basket.width - 20, // Shrink width to fit
+            height: basket.height - 10 // Shrink height to fit
+        };
+
+        // Check if the food hitbox overlaps with the basket hitbox
         if (
-            foods[i].y + foodSize > basket.y && // Use foodSize for collision detection
-            foods[i].x < basket.x + basket.width &&
-            foods[i].x + foodSize > basket.x // Use foodSize for collision detection
+            foodHitbox.y + foodHitbox.height > basketHitbox.y &&
+            foodHitbox.x < basketHitbox.x + basketHitbox.width &&
+            foodHitbox.x + foodHitbox.width > basketHitbox.x
         ) {
             if (foods[i].color === 'green') {
                 score++; // Increase score for green food
@@ -142,7 +162,7 @@ function updateFoods(deltaTime) {
 
         // If food reaches the bottom, remove it
         if (foods[i].y > canvas.height) {
-            foods.splice(i, 1); // Remove the food that hit the ground
+            foods.splice(i, 1);
         }
     }
 }
